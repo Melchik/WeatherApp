@@ -14,6 +14,9 @@ final class RootView: UIView {
     // MARK: - Props
 
     struct Props: Equatable {
+        let date: String
+        let city: String
+        let country: String
     }
 
     // MARK: - Private Props
@@ -21,6 +24,32 @@ final class RootView: UIView {
     private var props: Props?
 
     // MARK: - Views
+
+    private lazy var dateLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 14)
+        $0.textColor = .white
+    }
+
+    private lazy var cityLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 40, weight: .bold)
+        $0.textColor = .white
+    }
+
+    private lazy var countryLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 20)
+        $0.textColor = .white
+    }
+
+    private lazy var vStackLabel = UIStackView(
+        arrangedSubviews: [
+            dateLabel,
+            cityLabel,
+            countryLabel
+        ],
+        axis: .vertical,
+        spacing: 0.0,
+        alignment: .center
+    )
 
     // MARK: - LifeCycle
 
@@ -44,6 +73,10 @@ extension RootView {
     func render(_ props: Props) {
         guard self.props != props else { return }
         self.props = props
+
+        dateLabel.text = props.date
+        cityLabel.text = props.city
+        countryLabel.text = props.country
     }
 }
 
@@ -68,10 +101,15 @@ private extension RootView {
 
     /// Добавление Views
     func setupViews() {
+        addSubview(vStackLabel)
     }
 
     /// Установка констреинтов
     func setupConstraints() {
+        vStackLabel.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+        }
     }
 }
 

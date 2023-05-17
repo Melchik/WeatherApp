@@ -15,6 +15,14 @@ final class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        moduleView.render(
+            .init(
+                date: "Today, May 7th, 2021",
+                city: "Barcelona",
+                country: "Spain"
+            )
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
