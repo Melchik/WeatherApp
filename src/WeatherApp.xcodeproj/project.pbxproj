@@ -46,6 +46,7 @@
 		6780D2732A12999900F8FF8F = {
 			isa = PBXGroup;
 			children = (
+				67BFEBB92A15357C00BBB375 /* Configs */,
 				6780D27E2A12999900F8FF8F /* WeatherApp */,
 				6780D27D2A12999900F8FF8F /* Products */,
 			);
@@ -95,6 +96,13 @@
 				6780D28A2A12999A00F8FF8F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		67BFEBB92A15357C00BBB375 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
