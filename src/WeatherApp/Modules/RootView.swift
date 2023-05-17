@@ -52,7 +52,6 @@ extension RootView {
 private extension RootView {
     /// Настройка View
     func setup() {
-        // swiftlint:disable closure_end_indentation
         let gradient = CAGradientLayer(
             colors: [
                 UIColor(hexString: "30A2C5") ?? .cyan,
@@ -61,7 +60,6 @@ private extension RootView {
         ).then {
             $0.frame = UIScreen.main.bounds
         }
-        // swiftlint:enable closure_end_indentation
 
         self.layer.addSublayer(gradient)
 

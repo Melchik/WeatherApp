@@ -16,4 +16,25 @@ final class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+    }
+}
+
+// MARK: - Private Methods
+
+private extension RootViewController {
+    private func configureNavigationBar() {
+        let button = UIBarButtonItem(
+            systemItem: .search,
+            primaryAction: UIAction{ _ in
+            debugPrint("Search button tapped")
+            }
+        )
+        button.tintColor = .white
+
+        navigationItem.rightBarButtonItem = button
+    }
 }

@@ -16,6 +16,7 @@
 		6780D2A02A12A55300F8FF8F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 6780D29F2A12A55300F8FF8F /* Then */; };
 		6780D2A32A12A56800F8FF8F /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6780D2A22A12A56800F8FF8F /* SwifterSwift */; };
 		6780D2AB2A12AA8B00F8FF8F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6780D2AA2A12AA8B00F8FF8F /* SnapKit */; };
+		67BFEBBB2A15371D00BBB375 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 67BFEBBA2A15371D00BBB375 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		6780D28D2A12999A00F8FF8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6780D2952A12A0E300F8FF8F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6780D2972A12A0ED00F8FF8F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		67BFEBBA2A15371D00BBB375 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		67BFEBB92A15357C00BBB375 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				67BFEBBA2A15371D00BBB375 /* .swiftlint.yml */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BFEBBB2A15371D00BBB375 /* .swiftlint.yml in Resources */,
 				6780D28C2A12999A00F8FF8F /* LaunchScreen.storyboard in Resources */,
 				6780D2892A12999A00F8FF8F /* Assets.xcassets in Resources */,
 			);

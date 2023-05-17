@@ -5,7 +5,7 @@ opt_in_rules:
   - block_based_kvo
   - class_delegate_protocol
   - closing_brace
-  - closure_end_indentation
+ # - closure_end_indentation
   - closure_parameter_position
   - closure_spacing
   - collection_alignment
