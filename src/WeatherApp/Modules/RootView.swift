@@ -51,6 +51,11 @@ final class RootView: UIView {
         alignment: .center
     )
 
+    private lazy var temperatureView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layerCornerRadius = 120
+    }
+
     // MARK: - LifeCycle
 
     init() {
@@ -102,6 +107,7 @@ private extension RootView {
     /// Добавление Views
     func setupViews() {
         addSubview(vStackLabel)
+        addSubview(temperatureView)
     }
 
     /// Установка констреинтов
@@ -109,6 +115,11 @@ private extension RootView {
         vStackLabel.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
+        }
+        temperatureView.snp.makeConstraints {
+            $0.top.equalTo(vStackLabel.snp.bottom).offset(18)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(CGSize(width: 240, height: 240))
         }
     }
 }
