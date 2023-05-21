@@ -20,7 +20,16 @@ final class RootViewController: UIViewController {
             .init(
                 date: "Today, May 7th, 2021",
                 city: "Barcelona",
-                country: "Spain"
+                country: "Spain",
+                temperature: "10°C",
+                windStatus: "Wind status",
+                windSpeed: "7 mph",
+                visibility: "Visibility",
+                visibilityDistance: "6.4 miles",
+                humidity: "Humidity",
+                humidityPercent: "85%",
+                airPressure: "Air pressure",
+                airMb: "998 mb"
             )
         )
     }
