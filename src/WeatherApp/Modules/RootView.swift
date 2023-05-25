@@ -210,16 +210,19 @@ private extension RootView {
 
     /// Добавление Views
     func setupViews() {
-        addSubview(vStackLabel)
         addSubviews([
             temperatureView,
             currentWeatherImageView,
             currentTemperatureLabel
         ])
-        addSubview(vStackWindLabel)
-        addSubview(vStackVisibilityLabel)
-        addSubview(vStackHumidityLabel)
-        addSubview(vStackAirPressureLabel)
+
+        addSubviews([
+            vStackLabel,
+            vStackWindLabel,
+            vStackVisibilityLabel,
+            vStackHumidityLabel,
+            vStackAirPressureLabel
+        ])
     }
 
     /// Установка констреинтов
