@@ -4,6 +4,9 @@
 //
 //  Created by Илья Поздняков on 15.05.2023.
 //
+import SnapKit
+import SwifterSwift
+import Then
 import UIKit
 
 final class RootViewController: UIViewController {
@@ -46,8 +49,12 @@ private extension RootViewController {
     private func configureNavigationBar() {
         let button = UIBarButtonItem(
             systemItem: .search,
-            primaryAction: UIAction{ _ in
-            debugPrint("Search button tapped")
+            primaryAction: UIAction{ [weak self] _ in
+                let vc = SearchViewController {
+                    debugPrint($0)
+                }
+
+                self?.navigationController?.pushViewController(vc)
             }
         )
         button.tintColor = .white
