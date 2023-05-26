@@ -151,6 +151,25 @@ final class RootView: UIView {
         spacing: 8,
         alignment: .center
     )
+    private lazy var vDoubleStackOne = UIStackView(
+        arrangedSubviews: [
+            vStackWindLabel,
+            vStackHumidityLabel
+        ],
+        axis: .vertical,
+        spacing: 20,
+        alignment: .fill
+    )
+
+    private lazy var vDoubleStackTwo = UIStackView(
+        arrangedSubviews: [
+            vStackVisibilityLabel,
+            vStackAirPressureLabel
+        ],
+        axis: .vertical,
+        spacing: 20,
+        alignment: .fill
+    )
     // MARK: - LifeCycle
 
     init() {
@@ -165,11 +184,11 @@ final class RootView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
+    }
 
-// MARK: - Internal Methods
+    // MARK: - Internal Methods
 
-extension RootView {
+    extension RootView {
     func render(_ props: Props) {
         guard self.props != props else { return }
         self.props = props
@@ -187,11 +206,11 @@ extension RootView {
         airPressureLabel.text = props.airPressure
         airMbLabel.text = props.airMb
     }
-}
+    }
 
-// MARK: - Private Methods
+    // MARK: - Private Methods
 
-private extension RootView {
+    private extension RootView {
     /// Настройка View
     func setup() {
         let gradient = CAGradientLayer(
@@ -218,10 +237,8 @@ private extension RootView {
 
         addSubviews([
             vStackLabel,
-            vStackWindLabel,
-            vStackVisibilityLabel,
-            vStackHumidityLabel,
-            vStackAirPressureLabel
+            vDoubleStackOne,
+            vDoubleStackTwo
         ])
     }
 
@@ -248,24 +265,15 @@ private extension RootView {
             $0.centerX.equalToSuperview()
         }
 
-        vStackWindLabel.snp.makeConstraints {
+        vDoubleStackOne.snp.makeConstraints {
             $0.top.equalTo(temperatureView.snp.bottom).offset(31)
             $0.leading.equalToSuperview().inset(57)
+            $0.trailing.equalTo(vDoubleStackTwo.snp.leading).offset(30)
         }
 
-        vStackVisibilityLabel.snp.makeConstraints {
+        vDoubleStackTwo.snp.makeConstraints {
             $0.top.equalTo(temperatureView.snp.bottom).offset(31)
-            $0.trailing.equalToSuperview().inset(66)
-        }
-
-        vStackHumidityLabel.snp.makeConstraints {
-            $0.top.equalTo(vStackWindLabel.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().inset(67)
-        }
-
-        vStackAirPressureLabel.snp.makeConstraints {
-            $0.top.equalTo(vStackVisibilityLabel.snp.bottom).offset(20)
-            $0.trailing.equalToSuperview().inset(60)
+            $0.trailing.equalToSuperview().inset(57)
         }
     }
 }
