@@ -29,6 +29,10 @@ final class SearchViewController: UIViewController {
         view = moduleView
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         completion("Hello, World - SearchViewController")

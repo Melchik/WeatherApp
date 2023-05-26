@@ -22,6 +22,17 @@ final class SearchView: UIView {
 
     // MARK: - Views
 
+    private lazy var searchingView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layerCornerRadius = 50
+    }
+
+    private lazy var searchingTextField = UITextField().then {
+        $0.backgroundColor = .secondarySystemBackground
+        $0.placeholder = "     SEARCH LOCATION"
+        $0.setPlaceHolderTextColor(.black)
+        $0.layerCornerRadius = 24
+    }
     // MARK: - LifeCycle
 
     init() {
@@ -65,19 +76,34 @@ private extension SearchView {
 
         backgroundColor = UIColor(hexString: "00242F")
     }
-    }
 
     /// Добавление Views
     func setupViews() {
+        addSubview(searchingView)
+        addSubview(searchingTextField)
     }
 
     /// Установка констреинтов
     func setupConstraints() {
+        searchingView.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.size.equalTo(Constants.searchingViewSize)
+        }
+
+        searchingTextField.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(64)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Constants.searchingTextFieldSize)
+        }
     }
+}
 
 // MARK: - Constants
 
 private extension SearchView {
     enum Constants {
+        static let searchingViewSize = CGSize(width: 414, height: 366)
+        static let searchingTextFieldSize = CGSize(width: 305, height: 44)
     }
 }
