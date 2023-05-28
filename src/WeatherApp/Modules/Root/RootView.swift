@@ -170,6 +170,16 @@ final class RootView: UIView {
         spacing: 20,
         alignment: .fill
     )
+
+    private lazy var hFinalStack = UIStackView(
+        arrangedSubviews: [
+            vDoubleStackOne,
+            vDoubleStackTwo
+        ],
+        axis: .horizontal,
+        spacing: 100,
+        alignment: .fill
+    )
     // MARK: - LifeCycle
 
     init() {
@@ -237,8 +247,7 @@ final class RootView: UIView {
 
         addSubviews([
             vStackLabel,
-            vDoubleStackOne,
-            vDoubleStackTwo
+            hFinalStack
         ])
     }
 
@@ -265,15 +274,9 @@ final class RootView: UIView {
             $0.centerX.equalToSuperview()
         }
 
-        vDoubleStackOne.snp.makeConstraints {
+        hFinalStack.snp.makeConstraints {
             $0.top.equalTo(temperatureView.snp.bottom).offset(31)
-            $0.leading.equalToSuperview().inset(57)
-            $0.trailing.equalTo(vDoubleStackTwo.snp.leading).offset(30)
-        }
-
-        vDoubleStackTwo.snp.makeConstraints {
-            $0.top.equalTo(temperatureView.snp.bottom).offset(31)
-            $0.trailing.equalToSuperview().inset(57)
+            $0.leading.trailing.equalToSuperview().inset(50)
         }
     }
 }
