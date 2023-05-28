@@ -27,12 +27,14 @@ final class SearchView: UIView {
         $0.layerCornerRadius = 50
     }
 
-    private lazy var searchingTextField = UITextField().then {
-        $0.backgroundColor = .secondarySystemBackground
-        $0.placeholder = "     SEARCH LOCATION"
-        $0.setPlaceHolderTextColor(.black)
-        $0.layerCornerRadius = 24
-    }
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "SEARCH LOCATION"
+        searchBar.searchTextField.setPlaceHolderTextColor(.black)
+        searchBar.searchTextField.layerCornerRadius = 16
+        return searchBar
+    }()
     // MARK: - LifeCycle
 
     init() {
@@ -79,8 +81,10 @@ private extension SearchView {
 
     /// Добавление Views
     func setupViews() {
+        searchingView.addSubviews([
+            searchBar
+        ])
         addSubview(searchingView)
-        addSubview(searchingTextField)
     }
 
     /// Установка констреинтов
@@ -91,8 +95,8 @@ private extension SearchView {
             $0.size.equalTo(Constants.searchingViewSize)
         }
 
-        searchingTextField.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(64)
+        searchBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(64)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(Constants.searchingTextFieldSize)
         }
