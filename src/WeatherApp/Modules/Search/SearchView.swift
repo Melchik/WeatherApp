@@ -14,11 +14,25 @@ final class SearchView: UIView {
     // MARK: - Props
 
     struct Props: Equatable {
+        let items = [
+            "Москва",
+            "Санкт-Петербург",
+            "Тверь",
+            "Минск",
+            "Брянск"
+        ]
     }
 
     // MARK: - Private Props
 
     private var props: Props?
+    private var items = [
+        "Москва",
+        "Санкт-Петербург",
+        "Тверь",
+        "Минск",
+        "Брянск"
+    ]
 
     // MARK: - Views
 
@@ -34,6 +48,12 @@ final class SearchView: UIView {
         searchBar.searchTextField.setPlaceHolderTextColor(.black)
         searchBar.searchTextField.layerCornerRadius = 16
         return searchBar
+    }()
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        return tableView
     }()
     // MARK: - LifeCycle
 
@@ -57,6 +77,9 @@ extension SearchView {
     func render(_ props: Props) {
         guard self.props != props else { return }
         self.props = props
+        self.items = props.items
+
+        tableView.reloadData()
     }
 }
 
@@ -77,12 +100,18 @@ private extension SearchView {
         self.layer.addSublayer(gradient)
 
         backgroundColor = UIColor(hexString: "00242F")
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(cellWithClass: SearchTableViewCell.self)
+        tableView.separatorStyle = .none
     }
 
     /// Добавление Views
     func setupViews() {
         searchingView.addSubviews([
-            searchBar
+            searchBar,
+            tableView
         ])
         addSubview(searchingView)
     }
@@ -100,6 +129,26 @@ private extension SearchView {
             $0.centerX.equalToSuperview()
             $0.size.equalTo(Constants.searchingTextFieldSize)
         }
+
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(searchBar.snp.bottom).offset(14)
+            $0.leading.equalTo(searchBar.snp.leading)
+            $0.trailing.bottom.equalToSuperview().inset(14)
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension SearchView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        items.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withClass: SearchTableViewCell.self)
+        cell.render(.init(value: items[indexPath.row]))
+        return cell
     }
 }
 
