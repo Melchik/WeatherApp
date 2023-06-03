@@ -31,6 +31,17 @@ final class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Task {
+            do {
+                let apiService = ApiService()
+                let data = try await apiService.obtainGeocoding(query: "Tver", limit: 5)
+
+                debugPrint(data.first?.localNames?.ru ?? "---")
+            } catch {
+                debugPrint(error)
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

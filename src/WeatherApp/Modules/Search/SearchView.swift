@@ -121,7 +121,7 @@ private extension SearchView {
         searchingView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
-            $0.size.equalTo(Constants.searchingViewSize)
+            $0.height.equalTo(Constants.searchingViewSize.height)
         }
 
         searchBar.snp.makeConstraints {
