@@ -13,7 +13,7 @@ enum Errors: Error {
 
 struct ApiService {
     private let baseUrl = "https://api.openweathermap.org"
-    private let apiKey = "6eda98e41b53dde03bf02985c4459550"
+    private let apiKey = "4f926c9820f56e1c6dc45c5ef78f65d7"
 
     func obtainGeocoding(query: String, limit: Int) async throws -> GeocodingResponse {
         var urlComponent = URLComponents(string: "\(baseUrl)/geo/1.0/direct")
