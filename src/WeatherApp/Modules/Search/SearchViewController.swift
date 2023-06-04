@@ -12,6 +12,7 @@ import UIKit
 
 final class SearchViewController: UIViewController {
     private let moduleView = SearchView()
+    private let apiService = ApiService()
 
     private var completion: (String) -> Void
 
@@ -31,21 +32,54 @@ final class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Task {
-            do {
-                let apiService = ApiService()
-                let data = try await apiService.obtainGeocoding(query: "Tver", limit: 5)
 
-                debugPrint(data.first?.localNames?.ru ?? "---")
-            } catch {
-                debugPrint(error)
+        moduleView.editingChanged = { [weak self] text in
+            guard
+                let self,
+                let text, !text.isEmpty
+            else {
+                self?.moduleView.render(.init(items: []))
+                return
+            }
+
+            DispatchQueue.global().asyncDeduped(target: self, after: 0.5) {
+                self.obtainGeocoding(quary: text)
             }
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         completion("Hello, World - SearchViewController")
+    }
+}
+
+private extension SearchViewController {
+    func configureNavigationBar() {
+    }
+
+    func obtainGeocoding(quary: String) {
+        Task {
+            do {
+                let data = try await apiService.obtainGeocoding(query: quary)
+
+                moduleView.render(
+                    .init(
+                        items: data
+                            .map {
+                                "\($0.name ?? ""), \($0.country ?? "")"
+                            }
+                            .withoutDuplicates()
+                    )
+                )
+            } catch {
+                debugPrint(error)
+            }
+        }
     }
 }

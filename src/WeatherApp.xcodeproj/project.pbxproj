@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		673F1FED2A2CF29300D5A405 /* DispatchQueue+Dedupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673F1FEC2A2CF29300D5A405 /* DispatchQueue+Dedupe.swift */; };
+		673F1FEF2A2CF2EB00D5A405 /* CurrentWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673F1FEE2A2CF2EB00D5A405 /* CurrentWeatherResponse.swift */; };
 		6780D2802A12999900F8FF8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780D27F2A12999900F8FF8F /* AppDelegate.swift */; };
 		6780D2822A12999900F8FF8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780D2812A12999900F8FF8F /* SceneDelegate.swift */; };
 		6780D2892A12999A00F8FF8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6780D2882A12999A00F8FF8F /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		673F1FEC2A2CF29300D5A405 /* DispatchQueue+Dedupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Dedupe.swift"; sourceTree = "<group>"; };
+		673F1FEE2A2CF2EB00D5A405 /* CurrentWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherResponse.swift; sourceTree = "<group>"; };
 		6780D27C2A12999900F8FF8F /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6780D27F2A12999900F8FF8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6780D2812A12999900F8FF8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		673F1FEB2A2CF28800D5A405 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				673F1FEC2A2CF29300D5A405 /* DispatchQueue+Dedupe.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		6780D2732A12999900F8FF8F = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,7 @@
 		6780D27E2A12999900F8FF8F /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				673F1FEB2A2CF28800D5A405 /* Extensions */,
 				67D407C32A2B57D4003998D6 /* Services */,
 				67D407C42A2B57E4003998D6 /* Entities */,
 				6780D2992A12A11A00F8FF8F /* Modules */,
@@ -159,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				67D407C82A2B5B72003998D6 /* GeocodingResponse.swift */,
+				673F1FEE2A2CF2EB00D5A405 /* CurrentWeatherResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -271,9 +285,11 @@
 				6780D2982A12A0ED00F8FF8F /* RootView.swift in Sources */,
 				67C867862A1FC7B200BB25B5 /* SearchViewController.swift in Sources */,
 				67D407C92A2B5B72003998D6 /* GeocodingResponse.swift in Sources */,
+				673F1FED2A2CF29300D5A405 /* DispatchQueue+Dedupe.swift in Sources */,
 				6780D2802A12999900F8FF8F /* AppDelegate.swift in Sources */,
 				6780D2822A12999900F8FF8F /* SceneDelegate.swift in Sources */,
 				6780D2962A12A0E300F8FF8F /* RootViewController.swift in Sources */,
+				673F1FEF2A2CF2EB00D5A405 /* CurrentWeatherResponse.swift in Sources */,
 				67D407C62A2B5B22003998D6 /* ApiService.swift in Sources */,
 				67DEE9F72A23C195009EDF3B /* SearchTableViewCell.swift in Sources */,
 			);

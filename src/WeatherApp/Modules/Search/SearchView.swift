@@ -14,25 +14,17 @@ final class SearchView: UIView {
     // MARK: - Props
 
     struct Props: Equatable {
-        let items = [
-            "Москва",
-            "Санкт-Петербург",
-            "Тверь",
-            "Минск",
-            "Брянск"
-        ]
+        let items: [String]
     }
+
+    // MARK: - Internal Props
+
+    var editingChanged: ((String?) -> Void)?
 
     // MARK: - Private Props
 
     private var props: Props?
-    private var items = [
-        "Москва",
-        "Санкт-Петербург",
-        "Тверь",
-        "Минск",
-        "Брянск"
-    ]
+    private var items: [String] = []
 
     // MARK: - Views
 
@@ -105,6 +97,13 @@ private extension SearchView {
         tableView.dataSource = self
         tableView.register(cellWithClass: SearchTableViewCell.self)
         tableView.separatorStyle = .none
+
+        searchBar.textField?.addAction(
+            UIAction { [weak self] _ in
+                self?.editingChanged?(self?.searchBar.text)
+            },
+            for: .editingChanged
+        )
     }
 
     /// Добавление Views
