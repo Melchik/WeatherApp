@@ -82,15 +82,15 @@ public struct Clouds: Codable, Equatable {
 }
 
 public struct Coord: Codable, Equatable {
-    public let lon: Int?
-    public let lat: Int?
+    public let lon: Double?
+    public let lat: Double?
 
     enum CodingKeys: String, CodingKey {
         case lon = "lon"
         case lat = "lat"
     }
 
-    public init(lon: Int?, lat: Int?) {
+    public init(lon: Double?, lat: Double?) {
         self.lon = lon
         self.lat = lat
     }

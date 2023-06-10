@@ -20,6 +20,7 @@ final class SearchView: UIView {
     // MARK: - Internal Props
 
     var editingChanged: ((String?) -> Void)?
+    var didSelectRowAt: ((Int) -> Void)?
 
     // MARK: - Private Props
 
@@ -148,6 +149,10 @@ extension SearchView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withClass: SearchTableViewCell.self)
         cell.render(.init(value: items[indexPath.row]))
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectRowAt?(indexPath.row)
     }
 }
 

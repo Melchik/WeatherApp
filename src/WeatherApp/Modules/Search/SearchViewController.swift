@@ -14,9 +14,11 @@ final class SearchViewController: UIViewController {
     private let moduleView = SearchView()
     private let apiService = ApiService()
 
-    private var completion: (String) -> Void
+    private var completion: (Double, Double) -> Void
 
-    init(completion: @escaping (String) -> Void) {
+    private var response: GeocodingResponse?
+
+    init(completion: @escaping (Double, Double) -> Void) {
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,16 +48,25 @@ final class SearchViewController: UIViewController {
                 self.obtainGeocoding(quary: text)
             }
         }
+
+        moduleView.didSelectRowAt = { [weak self] rowIndex in
+            guard
+                let response = self?.response,
+                let item = response[safe: rowIndex],
+                let lat = item.lat,
+                let lon = item.lon
+            else {
+                return
+            }
+
+            self?.completion(lat, lon)
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        completion("Hello, World - SearchViewController")
     }
 }
 
@@ -66,15 +77,15 @@ private extension SearchViewController {
     func obtainGeocoding(quary: String) {
         Task {
             do {
-                let data = try await apiService.obtainGeocoding(query: quary)
+                response = try await apiService.obtainGeocoding(query: quary)
+                guard let response else { return }
 
                 moduleView.render(
                     .init(
-                        items: data
+                        items: response
                             .map {
                                 "\($0.name ?? ""), \($0.country ?? "")"
                             }
-                            .withoutDuplicates()
                     )
                 )
             } catch {

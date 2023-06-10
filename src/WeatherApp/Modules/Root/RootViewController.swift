@@ -11,6 +11,7 @@ import UIKit
 
 final class RootViewController: UIViewController {
     private let moduleView = RootView()
+    private let apiService = ApiService()
 
     override func loadView() {
         view = moduleView
@@ -50,8 +51,8 @@ private extension RootViewController {
         let button = UIBarButtonItem(
             systemItem: .search,
             primaryAction: UIAction{ [weak self] _ in
-                let vc = SearchViewController {
-                    debugPrint($0)
+                let vc = SearchViewController { [weak self] lat, lon in
+                    self?.obtainCurrentWeather(lat: lat, lon: lon)
                 }
 
                 self?.navigationController?.pushViewController(vc)
@@ -60,5 +61,32 @@ private extension RootViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
+    }
+
+    func obtainCurrentWeather(lat: Double, lon: Double) {
+        Task {
+            do {
+                _ = try await apiService.obtainCurrentWeather(lat: lat, lon: lon)
+
+                moduleView.render(
+                    .init(
+                        date: "",
+                        city: "",
+                        country: "",
+                        temperature: "",
+                        windStatus: "",
+                        windSpeed: "",
+                        visibility: "",
+                        visibilityDistance: "",
+                        humidity: "",
+                        humidityPercent: "",
+                        airPressure: "",
+                        airMb: ""
+                    )
+                )
+            } catch {
+                debugPrint(error)
+            }
+        }
     }
 }
