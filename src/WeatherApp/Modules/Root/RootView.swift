@@ -68,7 +68,7 @@ final class RootView: UIView {
     private lazy var currentWeatherImageView = UIImageView(image: UIImage(systemName: "cloud.rain.fill"))
 
     private lazy var currentTemperatureLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 100, weight: .thin)
+        $0.font = .systemFont(ofSize: 60, weight: .thin)
         $0.textColor = .black
     }
 
@@ -270,9 +270,7 @@ final class RootView: UIView {
         }
 
         currentTemperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(vStackLabel.snp.bottom).offset(87)
-            $0.leading.equalToSuperview().inset(94)
-            $0.trailing.equalToSuperview().inset(104)
+            $0.top.equalTo(vStackLabel.snp.bottom).offset(110)
             $0.centerX.equalToSuperview()
         }
 
