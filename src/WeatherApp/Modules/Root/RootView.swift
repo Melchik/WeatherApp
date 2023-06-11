@@ -271,6 +271,8 @@ final class RootView: UIView {
 
         currentTemperatureLabel.snp.makeConstraints {
             $0.top.equalTo(vStackLabel.snp.bottom).offset(87)
+            $0.leading.equalToSuperview().inset(94)
+            $0.trailing.equalToSuperview().inset(104)
             $0.centerX.equalToSuperview()
         }
 

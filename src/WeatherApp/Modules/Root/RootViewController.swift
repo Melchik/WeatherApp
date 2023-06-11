@@ -66,22 +66,22 @@ private extension RootViewController {
     func obtainCurrentWeather(lat: Double, lon: Double) {
         Task {
             do {
-                _ = try await apiService.obtainCurrentWeather(lat: lat, lon: lon)
+                let response = try await apiService.obtainCurrentWeather(lat: lat, lon: lon)
 
                 moduleView.render(
                     .init(
-                        date: "",
-                        city: "",
-                        country: "",
-                        temperature: "",
-                        windStatus: "",
-                        windSpeed: "",
-                        visibility: "",
-                        visibilityDistance: "",
-                        humidity: "",
-                        humidityPercent: "",
-                        airPressure: "",
-                        airMb: ""
+                        date: "\(Date.now.string(withFormat: "EEEE', 'MMM d', 'yyyy"))",
+                        city: response.name ?? "---",
+                        country: response.sys?.country ?? "---",
+                        temperature: "\(response.main?.temp?.string ?? "1" ) °C",
+                        windStatus: "Wind status",
+                        windSpeed: "\(response.wind?.speed?.string ?? "0" ) mph",
+                        visibility: "Visibility",
+                        visibilityDistance: "\(response.visibility?.string ?? "0") miles",
+                        humidity: "Humidity",
+                        humidityPercent: "\(response.main?.humidity?.string ?? "0") %",
+                        airPressure: "Air pressure",
+                        airMb: "\(response.main?.pressure?.string ?? "0") mb"
                     )
                 )
             } catch {
