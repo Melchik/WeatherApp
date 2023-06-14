@@ -26,6 +26,7 @@ final class RootView: UIView {
         let humidityPercent: String
         let airPressure: String
         let airMb: String
+        let iconUrl: String
     }
 
     // MARK: - Private Props

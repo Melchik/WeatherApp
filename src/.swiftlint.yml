@@ -1,5 +1,4 @@
 opt_in_rules:
-  - anyobject_protocol
   - array_init
   - attributes
   - block_based_kvo
@@ -46,7 +45,7 @@ opt_in_rules:
   - force_try
   - force_unwrapping
   - function_body_length
-  - function_default_parameter_at_end
+#  - function_default_parameter_at_end
   - function_parameter_count
   - generic_type_name
   - identical_operands
@@ -54,7 +53,6 @@ opt_in_rules:
   - implicit_getter
   - implicitly_unwrapped_optional
   - indentation_width
-  - inert_defer
   - is_disjoint
   - joined_default_parameter
   - large_tuple
@@ -139,7 +137,6 @@ opt_in_rules:
   - unneeded_parentheses_in_closure_argument
   - unowned_variable_capture
   - untyped_error_in_catch
-  - unused_capture_list
   - unused_closure_parameter
   - unused_control_flow_label
   - unused_enumerated
@@ -178,6 +175,7 @@ file_name:
     - UIViewExtensions.swift
     - ArticleExtensions.swift
     - EasyDi.swift
+    - DateExtensions.swift
 
 force_cast:
   error
@@ -222,7 +220,7 @@ trailing_comma:
 conditional_returns_on_newline:
   if_only: true
 
-indentation_width: 4
+#indentation_width: 4
 
 custom_rules:
   vertical_whitespace_before_mark:

@@ -14,12 +14,9 @@ final class SearchViewController: UIViewController {
     private let moduleView = SearchView()
     private let apiService = ApiService()
 
-    private var completion: (Double, Double) -> Void
-
     private var response: GeocodingResponse?
 
-    init(completion: @escaping (Double, Double) -> Void) {
-        self.completion = completion
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -58,8 +55,9 @@ final class SearchViewController: UIViewController {
             else {
                 return
             }
-
-            self?.completion(lat, lon)
+            
+            UserDefaultsService.shared.saveCoordinates(lat: lat, lon: lon)
+            
             self?.navigationController?.popViewController(animated: true)
         }
     }

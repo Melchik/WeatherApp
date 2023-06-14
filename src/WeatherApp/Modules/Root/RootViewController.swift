@@ -17,30 +17,15 @@ final class RootViewController: UIViewController {
         view = moduleView
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        moduleView.render(
-            .init(
-                date: "Today, May 7th, 2021",
-                city: "Barcelona",
-                country: "Spain",
-                temperature: "10°C",
-                windStatus: "Wind status",
-                windSpeed: "7 mph",
-                visibility: "Visibility",
-                visibilityDistance: "6.4 miles",
-                humidity: "Humidity",
-                humidityPercent: "85%",
-                airPressure: "Air pressure",
-                airMb: "998 mb"
-            )
-        )
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+        
+        if let cords = UserDefaultsService.shared.fetchCoordinates() {
+            obtainCurrentWeather(lat: cords.lat, lon: cords.lon)
+        } else {
+            routeToSearchView()
+        }
     }
 }
 
@@ -51,16 +36,18 @@ private extension RootViewController {
         let button = UIBarButtonItem(
             systemItem: .search,
             primaryAction: UIAction{ [weak self] _ in
-                let vc = SearchViewController { [weak self] lat, lon in
-                    self?.obtainCurrentWeather(lat: lat, lon: lon)
-                }
-
-                self?.navigationController?.pushViewController(vc)
+                self?.routeToSearchView()
             }
         )
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
+        
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    func routeToSearchView() {
+        navigationController?.pushViewController(SearchViewController())
     }
 
     func obtainCurrentWeather(lat: Double, lon: Double) {
@@ -70,7 +57,7 @@ private extension RootViewController {
 
                 moduleView.render(
                     .init(
-                        date: "\(Date.now.string(withFormat: "EEEE', 'MMM d', 'yyyy"))",
+                        date: "\(Date.now.string(withFormat: "EEEE', 'MMM d', 'yyyy", locale: Locale(identifier: "en_US")))",
                         city: response.name ?? "---",
                         country: response.sys?.country ?? "---",
                         temperature: "\(response.main?.temp?.string ?? "1" ) °C",
@@ -81,7 +68,8 @@ private extension RootViewController {
                         humidity: "Humidity",
                         humidityPercent: "\(response.main?.humidity?.string ?? "0") %",
                         airPressure: "Air pressure",
-                        airMb: "\(response.main?.pressure?.string ?? "0") mb"
+                        airMb: "\(response.main?.pressure?.string ?? "0") mb",
+                        iconUrl: ImageService.fetchImage(iconCode: response.weather?.first?.icon ?? "01d")
                     )
                 )
             } catch {
