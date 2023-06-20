@@ -20,7 +20,7 @@ final class RootViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-        
+
         if let cords = UserDefaultsService.shared.fetchCoordinates() {
             obtainCurrentWeather(lat: cords.lat, lon: cords.lon)
         } else {
@@ -42,10 +42,10 @@ private extension RootViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
-        
+
         navigationController?.navigationBar.tintColor = .white
     }
-    
+
     func routeToSearchView() {
         navigationController?.pushViewController(SearchViewController())
     }

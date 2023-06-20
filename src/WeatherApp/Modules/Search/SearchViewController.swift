@@ -55,9 +55,9 @@ final class SearchViewController: UIViewController {
             else {
                 return
             }
-            
+
             UserDefaultsService.shared.saveCoordinates(lat: lat, lon: lon)
-            
+
             self?.navigationController?.popViewController(animated: true)
         }
     }

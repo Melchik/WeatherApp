@@ -7,6 +7,7 @@
 
 import SnapKit
 import SwifterSwift
+import Kingfisher
 import Then
 import UIKit
 
@@ -26,7 +27,7 @@ final class RootView: UIView {
         let humidityPercent: String
         let airPressure: String
         let airMb: String
-        let iconUrl: String
+        let iconUrl: URL
     }
 
     // MARK: - Private Props
@@ -216,7 +217,8 @@ final class RootView: UIView {
         humidityPercentLabel.text = props.humidityPercent
         airPressureLabel.text = props.airPressure
         airMbLabel.text = props.airMb
-    }
+        currentWeatherImageView.kf.setImage(props.iconUrl)
+        }
     }
 
     // MARK: - Private Methods
